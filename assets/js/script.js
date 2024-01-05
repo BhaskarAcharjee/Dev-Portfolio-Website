@@ -101,8 +101,10 @@ for (let i = 0; i < filterBtn.length; i++) {
   });
 }
 
+// >>>>>>>>>>>>>>>>>>>>> Contact Form Script <<<<<<<<<<<<<<<<<<<<<<<
+
 // contact form variables
-const form = document.querySelector("[data-form]");
+const form = document.forms["submit-to-google-sheet"];
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
 
@@ -117,6 +119,18 @@ for (let i = 0; i < formInputs.length; i++) {
     }
   });
 }
+
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbxrdqUDIVns0po7HGyAyTslEofskNG6iec9AF109f2vGvkcfas6FDX1PmzYmumPd6SDzA/exec";
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  fetch(scriptURL, { method: "POST", body: new FormData(form) })
+    .then((response) => {
+      form.reset();
+    })
+    .catch((error) => console.error("Error!", error.message));
+});
 
 // page navigation variables
 const navigationLinks = document.querySelectorAll("[data-nav-link]");

@@ -1161,9 +1161,9 @@
           </section>
         </article>
 
-        <!--
-        - #CONTACT
-      -->
+        <!-- /*-----------------------------------*\ -->
+        <!-- CONTACT -->
+        <!-- \*-----------------------------------*/ -->
 
         <article class="contact" data-page="contact">
           <header>
@@ -1184,11 +1184,16 @@
           <section class="contact-form">
             <h3 class="h3 form-title">Contact Form</h3>
 
-            <form action="#" class="form" data-form>
+            <form
+              action="#"
+              class="form"
+              name="submit-to-google-sheet"
+              data-form
+            >
               <div class="input-wrapper">
                 <input
                   type="text"
-                  name="fullname"
+                  name="Name"
                   class="form-input"
                   placeholder="Full name"
                   required
@@ -1197,7 +1202,7 @@
 
                 <input
                   type="email"
-                  name="email"
+                  name="Email"
                   class="form-input"
                   placeholder="Email address"
                   required
@@ -1206,7 +1211,7 @@
               </div>
 
               <textarea
-                name="message"
+                name="Message"
                 class="form-input"
                 placeholder="Your Message"
                 required
