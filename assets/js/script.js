@@ -101,6 +101,26 @@ for (let i = 0; i < filterBtn.length; i++) {
   });
 }
 
+// page navigation variables
+const navigationLinks = document.querySelectorAll("[data-nav-link]");
+const pages = document.querySelectorAll("[data-page]");
+
+// add event to all nav link
+for (let i = 0; i < navigationLinks.length; i++) {
+  navigationLinks[i].addEventListener("click", function () {
+    for (let i = 0; i < pages.length; i++) {
+      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
+        pages[i].classList.add("active");
+        navigationLinks[i].classList.add("active");
+        window.scrollTo(0, 0);
+      } else {
+        pages[i].classList.remove("active");
+        navigationLinks[i].classList.remove("active");
+      }
+    }
+  });
+}
+
 // >>>>>>>>>>>>>>>>>>>>> Contact Form Script <<<<<<<<<<<<<<<<<<<<<<<
 
 // contact form variables
@@ -132,27 +152,8 @@ form.addEventListener("submit", (e) => {
     .catch((error) => console.error("Error!", error.message));
 });
 
-// page navigation variables
-const navigationLinks = document.querySelectorAll("[data-nav-link]");
-const pages = document.querySelectorAll("[data-page]");
-
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
-    }
-  });
-}
-
 // >>>>>>>>>>>>>>>>>>>>> Typing Animation <<<<<<<<<<<<<<<<<<<<<<<
+
 const texts = [
   "Web Developer",
   "Android Developer",
@@ -209,3 +210,103 @@ function backspace() {
 }
 
 type(); // Start the typing animation
+
+// >>>>>>>>>>>>>>>>>>>>> Tech Stack Dynamic Data <<<<<<<<<<<<<<<<<<<<<<<
+
+// Tech stack data with image paths
+const techStacks = [
+  // "logo-1-color.png",
+  // "logo-2-color.png",
+  // "logo-3-color.png",
+  // "logo-4-color.png",
+  // "logo-5-color.png",
+  // "logo-6-color.png",
+  "icons_c.svg",
+  "icons_cpp.svg",
+  "icons_java.svg",
+  "icons_python.svg",
+  "icons_flask.svg",
+  "icons_html.svg",
+  "icons_css.svg",
+  "icons_javascript.svg",
+  "icons_react.svg",
+  "icons_bootstrap.svg",
+  "icons_android.svg",
+  "icons_androidstudio.svg",
+  // Add more as needed
+];
+
+// Reference to the UL element
+const techStacksList = document.getElementById("techStacksList");
+
+// Function to create an LI element with an A element inside for each tech stack
+const createTechStackItem = (imagePath) => {
+  const listItem = document.createElement("li");
+  listItem.classList.add("clients-item");
+
+  const link = document.createElement("a");
+  link.href = "#";
+
+  const img = document.createElement("img");
+  img.src = `./assets/images/techstacks_icons/${imagePath}`;
+  // img.src = `./assets/images/${imagePath}`;
+  img.alt = "client logo";
+
+  link.appendChild(img);
+  listItem.appendChild(link);
+
+  return listItem;
+};
+
+// Populate the tech stacks dynamically
+techStacks.forEach((techStack) => {
+  const listItem = createTechStackItem(techStack);
+  techStacksList.appendChild(listItem);
+});
+
+// >>>>>>>>>>>>>>>>>>>>> Skills Dynamic Data <<<<<<<<<<<<<<<<<<<<<<<
+
+// Data for technical skills
+const technicalSkills = [
+  { name: "Web Development", value: 85 },
+  { name: "App Development", value: 70 },
+  { name: "Graphic Design", value: 90 },
+  { name: "Data Analysis", value: 85 },
+];
+
+// Data for soft skills
+const softSkills = [
+  { name: "Communication", value: 75 },
+  { name: "Teamwork", value: 80 },
+  { name: "Adaptability", value: 85 },
+  { name: "Problem Solving", value: 90 },
+];
+
+// Function to generate a skills item
+function generateSkillsItem(name, value) {
+  return `
+    <li class="skills-item">
+      <div class="title-wrapper">
+        <h5 class="h5">${name}</h5>
+        <data value="${value}">${value}%</data>
+      </div>
+      <div class="skill-progress-bg">
+        <div class="skill-progress-fill" style="width: ${value}%"></div>
+      </div>
+    </li>
+  `;
+}
+
+// Function to populate skills list
+function populateSkillsList(listId, skills) {
+  const skillsList = document.getElementById(listId);
+  skills.forEach((skill) => {
+    skillsList.innerHTML += generateSkillsItem(skill.name, skill.value);
+  });
+}
+
+// Populate technical skills
+populateSkillsList("technicalSkillsList", technicalSkills);
+
+// Populate soft skills
+populateSkillsList("softSkillsList", softSkills);
