@@ -157,9 +157,9 @@ form.addEventListener("submit", (e) => {
 const texts = [
   "Web Developer",
   "Android Developer",
-  "Graphic Designer",
-  "Data Analyst",
-  "Python Developer",
+  "Graphic Design Designer",
+  "Data Analysis Analyst",
+  "Python Projects Developer",
   "Youtuber",
 ];
 let count = 0;
@@ -269,9 +269,9 @@ techStacks.forEach((techStack) => {
 // Data for technical skills
 const technicalSkills = [
   { name: "Web Development", value: 85 },
-  { name: "App Development", value: 70 },
-  { name: "Graphic Design", value: 90 },
-  { name: "Data Analysis", value: 85 },
+  { name: "App Development Development", value: 70 },
+  { name: "Graphic Design Design", value: 90 },
+  { name: "Data Analysis Analysis", value: 85 },
 ];
 
 // Data for soft skills
@@ -310,3 +310,176 @@ populateSkillsList("technicalSkillsList", technicalSkills);
 
 // Populate soft skills
 populateSkillsList("softSkillsList", softSkills);
+
+// >>>>>>>>>>>>>>>>>>>>> Portfolio Projects Dynamic Data <<<<<<<<<<<<<<<<<<<<<<<
+
+const projects = [
+  {
+    title: "Melody Morph",
+    imageUrl: "./assets/images/projects_img/melodymorph.png",
+    websiteUrl: "https://melodymorph.onrender.com/",
+    description: "Audio analysis and melody transformation.",
+    category: "Python Projects Web Development",
+  },
+  {
+    title: "Pixel Craft",
+    imageUrl: "./assets/images/projects_img/pixelcraft.png",
+    websiteUrl: "https://github.com/BhaskarAcharjee/PixelCraft",
+    description: "Image editing with PIL library.",
+    category: "Python Projects",
+  },
+  {
+    title: "Notes App",
+    imageUrl: "./assets/images/projects_img/notesapp.png",
+    websiteUrl: "https://github.com/BhaskarAcharjee/CorvasNotesApp",
+    description: "Versatile tool for organizing notes.",
+    category: "App Development",
+  },
+  {
+    title: "Finance Tracker",
+    imageUrl: "./assets/images/projects_img/financetracker.png",
+    websiteUrl: "https://net-worth-tracker.netlify.app/",
+    description: "User-friendly financial management web app.",
+    category: "Web Development",
+  },
+  {
+    title: "Sudoku Solver",
+    imageUrl: "./assets/images/projects_img/sudokusolver.png",
+    websiteUrl: "https://github.com/BhaskarAcharjee/SudokuSolver",
+    description: "Efficient Sudoku solver algorithm.",
+    category: "Python Projects",
+  },
+  {
+    title: "Morse Enigma",
+    imageUrl: "./assets/images/projects_img/morseenigma.png",
+    websiteUrl: "https://github.com/BhaskarAcharjee/MorseEnigma",
+    description: "Communication system with Morse code encryption.",
+    category: "Python Projects",
+  },
+  {
+    title: "AIConverse",
+    imageUrl: "./assets/images/projects_img/aiconverse.png",
+    websiteUrl: "https://github.com/BhaskarAcharjee/AIConverse",
+    description: "Advanced chatbot platform with AI.",
+    category: "Python Projects",
+  },
+  {
+    title: "HandSphere",
+    imageUrl: "./assets/images/projects_img/handsphere.png",
+    websiteUrl: "https://github.com/BhaskarAcharjee/HandSphere",
+    description: "Gesture-based gaming with hand cricket.",
+    category: "Python Projects",
+  },
+  {
+    title: "Attendance App",
+    imageUrl: "./assets/images/projects_img/attandenceapp.png",
+    websiteUrl: "#",
+    description: "Convenient solution for managing attendance.",
+    category: "App Development",
+  },
+  {
+    title: "Expense Tracker App",
+    imageUrl: "./assets/images/projects_img/expensetrackerapp.png",
+    websiteUrl: "#",
+    description: "Powerful tool for tracking personal expenses.",
+    category: "App Development",
+  },
+  {
+    title: "Student Results Analysis",
+    imageUrl: "./assets/images/projects_img/student_results_analysis.png",
+    websiteUrl: "https://github.com/BhaskarAcharjee/Student-Results-Analysis",
+    description: "Analyzing student results to uncover insights.",
+    category: "Data Analysis",
+  },
+  {
+    title: "Cricket Calculator",
+    imageUrl: "./assets/images/projects_img/cricketcalculator.png",
+    websiteUrl: "https://bhaskaracharjee.github.io/Cricket-Calculator/",
+    description: "Web app for calculating cricket metrics.",
+    category: "Web Development",
+  },
+  {
+    title: "Carousel Instagram Post",
+    imageUrl: "./assets/images/projects_img/studymonkinstaad.png",
+    websiteUrl:
+      "https://www.behance.net/gallery/174824905/Carousel-Instagram-Post-for-StudyMonk",
+    description: "Instagram carousel post for StudyMonk.",
+    category: "Graphic Design hide",
+  },
+  {
+    title: "Poster Design",
+    imageUrl: "./assets/images/projects_img/Museum Poster.png",
+    websiteUrl:
+      "https://www.behance.net/gallery/174268297/Poster-Design-for-College-Museum/modules/984020541",
+    description: "Poster design for College Museum.",
+    category: "Graphic Design",
+  },
+  {
+    title: "Personal Portfolio",
+    imageUrl: "./assets/images/projects_img/My_Personal_Portfolio.png",
+    websiteUrl: "https://bhaskaracharjee.github.io/Portfolio-Website/",
+    description: "Showcasing skills, projects, and experiences.",
+    category: "Web Development",
+  },
+  // ... (remaining projects)
+];
+
+const projectList = document.querySelector(".project-list");
+const filterButtons = document.querySelectorAll(".filter-list button");
+
+function updateProjects(category) {
+  projectList.innerHTML = "";
+  projects.forEach((project) => {
+    if (category === "All" || project.category.includes(category)) {
+      const projectItem = document.createElement("li");
+      projectItem.className = "project-item active";
+      projectItem.dataset.filterItem = true;
+      projectItem.dataset.category = project.category;
+
+      const projectLink = document.createElement("a");
+      projectLink.href = project.websiteUrl;
+
+      const projectImg = document.createElement("figure");
+      projectImg.className = "project-img";
+
+      const projectIconBox = document.createElement("div");
+      projectIconBox.className = "project-item-icon-box";
+      projectIconBox.innerHTML = '<ion-icon name="eye-outline"></ion-icon>';
+
+      const img = document.createElement("img");
+      img.src = project.imageUrl;
+      img.alt = project.title;
+      img.loading = "lazy";
+
+      const projectName = document.createElement("h3");
+      projectName.className = "project-title";
+      projectName.textContent = project.title;
+
+      const projectShortDescription = document.createElement("p");
+      projectShortDescription.className = "project-category";
+      projectShortDescription.textContent = project.description;
+
+      projectImg.appendChild(projectIconBox);
+      projectImg.appendChild(img);
+
+      projectLink.appendChild(projectImg);
+      projectLink.appendChild(projectName);
+      projectLink.appendChild(projectShortDescription);
+
+      projectItem.appendChild(projectLink);
+
+      projectList.appendChild(projectItem);
+    }
+  });
+}
+
+filterButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    const category = this.textContent;
+    updateProjects(category);
+    filterButtons.forEach((btn) => btn.classList.remove("active"));
+    this.classList.add("active");
+  });
+});
+
+updateProjects("All"); // Initially load all projects
