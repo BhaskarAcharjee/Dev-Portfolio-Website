@@ -157,9 +157,9 @@ form.addEventListener("submit", (e) => {
 const texts = [
   "Web Developer",
   "Android Developer",
-  "Graphic Design Designer",
-  "Data Analysis Analyst",
-  "Python Projects Developer",
+  "Graphic Designer",
+  "Data Analyst",
+  "Python Developer",
   "Youtuber",
 ];
 let count = 0;
@@ -215,12 +215,6 @@ type(); // Start the typing animation
 
 // Tech stack data with image paths
 const techStacks = [
-  // "logo-1-color.png",
-  // "logo-2-color.png",
-  // "logo-3-color.png",
-  // "logo-4-color.png",
-  // "logo-5-color.png",
-  // "logo-6-color.png",
   "icons_c.svg",
   "icons_cpp.svg",
   "icons_java.svg",
@@ -251,6 +245,7 @@ const createTechStackItem = (imagePath) => {
   img.src = `./assets/images/techstacks_icons/${imagePath}`;
   // img.src = `./assets/images/${imagePath}`;
   img.alt = "client logo";
+  img.loading = "lazy";
 
   link.appendChild(img);
   listItem.appendChild(link);
@@ -483,3 +478,24 @@ filterButtons.forEach((button) => {
 });
 
 updateProjects("All"); // Initially load all projects
+
+// ----------------------------------------------------------------
+// Education & experience timeline animation
+
+// Function to handle the intersection
+function handleIntersection(entries, observer) {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+      observer.unobserve(entry.target);
+    }
+  });
+}
+
+// Set up the Intersection Observer
+const observer = new IntersectionObserver(handleIntersection, { threshold: 0.5 });
+
+// Observe each timeline item
+document.querySelectorAll('.timeline-item').forEach(item => {
+  observer.observe(item);
+});

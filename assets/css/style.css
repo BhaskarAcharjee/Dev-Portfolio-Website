@@ -344,14 +344,25 @@ main {
 .avatar-box {
   background: var(--bg-gradient-onyx);
   border-radius: 20px;
+  overflow: hidden;
+  position: relative;
 }
 
-.avatar-box img {
-  transition: transform 0.3s ease-in-out;
+.avatar-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid transparent;
+  border-radius: 30px;
+  transition: border-color 0.3s ease-in-out;
+  pointer-events: none;
 }
 
-.avatar-box:hover img {
-  transform: scale(1.2);
+.avatar-box:hover::before {
+  border-color: var(--vegas-gold);
 }
 
 .info-content .name {
@@ -560,6 +571,12 @@ main {
   border-radius: 14px;
   box-shadow: var(--shadow-2);
   z-index: 1;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .service-item::before {
@@ -842,6 +859,14 @@ main {
 
 .timeline-item {
   position: relative;
+  opacity: 0; /* Set initial opacity to 0 */
+  transform: translateY(20px); /* Move the items down initially */
+  transition: opacity 0.8s ease, transform 0.8s ease; /* Add transition */
+}
+
+.timeline-item.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .timeline-item:not(:last-child) {
@@ -1401,6 +1426,15 @@ textarea.form-input::-webkit-resizer {
   }
   .column-title {
     font-size: 1rem;
+  }
+}
+
+/**
+ * responsive smaller than 580px screen
+ */
+@media (max-width: 580px) {
+  .avatar-box::before {
+    border-radius: 20px;
   }
 }
 
