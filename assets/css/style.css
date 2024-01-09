@@ -802,25 +802,33 @@ main {
 .clients-list {
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
   gap: 15px;
   margin: 0 -15px;
   padding: 25px;
   padding-bottom: 25px;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  overscroll-behavior-inline: contain;
-  scroll-snap-type: inline mandatory;
-  scroll-padding-inline: 25px;
+  overflow: hidden; /* Hide overflowing content */
 }
 
 .clients-item {
   min-width: 50%;
   scroll-snap-align: start;
+  transform: translateX(0); /* Initial position */
+  animation: moveItems 15s linear infinite; /* Adjust animation duration */
+}
+
+@keyframes moveItems {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% * 12)); /* Adjust the percentage based on the number of items*/
+  }
 }
 
 .clients-item img {
-  width: 100%;
+  width: 80%;
   filter: grayscale(1);
   transition: var(--transition-1);
 }
@@ -1130,7 +1138,7 @@ main {
 }
 
 .project-title,
-.project-category {
+.project-description {
   margin-left: 10px;
 }
 
@@ -1142,7 +1150,7 @@ main {
   line-height: 1.3;
 }
 
-.project-category {
+.project-description {
   color: var(--light-gray-70);
   font-size: var(--fs-6);
   font-weight: var(--fw-300);
